@@ -13,7 +13,7 @@ const DirectoryNavigator = createStackNavigator(
         initialRouteName: 'Directory',
         navigationOptions: {
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: 'green'
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
