@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import Home from './HomeComponent';
 import Directory from './DirectoryComponent';
 import GameInfo from './GameInfoComponent';
 import { View, Platform } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 const DirectoryNavigator = createStackNavigator(
     {
@@ -23,8 +24,34 @@ const DirectoryNavigator = createStackNavigator(
     }
 )
 
-class Main extends Component {
+const HomeNavigator = createStackNavigator(
+    {
+        Home: { screen: Home }
+    },
+    {
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: 'green'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            }
+        }
+    }
+)
 
+const MainNavigator = createBottomTabNavigator(
+    {
+        Home: { screen: HomeNavigator },
+        Directory: { screen: DirectoryNavigator }
+    },
+    {
+        activeBackgroundColor: 'dark green'
+    }
+);
+
+class Main extends Component {
     render()
     {
         return (
@@ -32,9 +59,7 @@ class Main extends Component {
                 flex: 1,
                 paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight
                 }}>
-                <DirectoryNavigator />
-            
-        
+                <MainNavigator />       
             </View>
         );
     }
