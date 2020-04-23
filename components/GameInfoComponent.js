@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { Card } from 'react-native-elements';
+import { GAMES } from '../shared/games';
 
 
 function RenderGame({game}) {
@@ -19,8 +20,23 @@ function RenderGame({game}) {
 }
 
 
-function GameInfo(props) {
-    return <RenderGame game={props.game} />;
+class GameInfo extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            games: GAMES
+        }
+    }
+
+    static navigationOptions = {
+        title: 'Game Information'
+    }
+
+    render() {
+        const gameId = this.props.navigation.getParam('gameId');
+        const game = this.state.games.filter(game => game.id === gameId)[0];
+        return <RenderGame game={game} />;
+    } 
 }
 
 

@@ -1,35 +1,40 @@
 import React, { Component } from 'react';
 import Directory from './DirectoryComponent';
 import GameInfo from './GameInfoComponent';
-import { View } from 'react-native';
-import { GAMES } from '../shared/games';
+import { View, Platform } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
+
+const DirectoryNavigator = createStackNavigator(
+    {
+        Directory: { screen: Directory },
+        GameInfo: { screen: GameInfo }
+    },
+    {
+        initialRouteName: 'Directory',
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: '#5637DD'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            }
+        }
+    }
+)
 
 class Main extends Component {
-    constructor(props) 
-    {
-        super(props);
-        this.state =
-        {
-            games: GAMES,
-            selectedGame: null
-        };
-    }
-
-    onGameSelect(gameId) {
-        this.setState({selectedGame: gameId});
-    }
 
     render()
     {
         return (
-            <View style={{flex: 1}}>
-                <Directory 
-                    games={this.state.games} 
-                    onPress={gameId => this.onGameSelect(gameId)}    
-                />
-                <GameInfo 
-                    game={this.state.games.filter(game => game.id === this.state.selectedGame)[0]}
-                />
+            <View style={{
+                flex: 1,
+                paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight
+                }}>
+                <DirectoryNavigator />
+            
+        
             </View>
         );
     }
