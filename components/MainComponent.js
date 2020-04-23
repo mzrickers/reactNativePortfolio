@@ -3,7 +3,7 @@ import Home from './HomeComponent';
 import Directory from './DirectoryComponent';
 import GameInfo from './GameInfoComponent';
 import { View, Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
 const DirectoryNavigator = createStackNavigator(
     {
@@ -41,13 +41,13 @@ const HomeNavigator = createStackNavigator(
     }
 )
 
-const MainNavigator = createBottomTabNavigator(
+const MainNavigator = createDrawerNavigator(
     {
         Home: { screen: HomeNavigator },
         Directory: { screen: DirectoryNavigator }
     },
     {
-        activeBackgroundColor: 'dark green'
+        drawerBackgroundColor: 'gray'
     }
 );
 
