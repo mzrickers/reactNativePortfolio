@@ -4,7 +4,7 @@ export const GAMES = [
         name: 'Boardgames',
         image: 'assets/react_images/gameCopy.jpeg',
         featured: true,
-        description: "Came hang with friends and play our wide assortment of games!"
+        description: "Come hang with friends and play our wide assortment of games!"
     },
     {
       id: 1,
