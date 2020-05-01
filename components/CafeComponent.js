@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Text, FlatList } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
-import TREATS from '../shared/treats';
+import { TREATS } from '../shared/treats';
 
  function Mission() {
     return(
@@ -38,7 +38,7 @@ class Cafe extends Component
                 <ListItem
                     title={item.name}
                     subtitle={item.description}
-                    leftAvatar={{ source: require('./images/cafe.jpeg')}}   
+                    leftAvatar={{ source: require('./images/coffee.jpg')}}   
                 />
             )
         }
