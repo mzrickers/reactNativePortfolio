@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Home from './HomeComponent';
 import Directory from './DirectoryComponent';
 import GameInfo from './GameInfoComponent';
+import Cafe from './CafeComponent';
+import Contact from './ContactComponent';
 import { View, Platform } from 'react-native';
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
@@ -41,13 +43,49 @@ const HomeNavigator = createStackNavigator(
     }
 )
 
+const CafeNavigator = createStackNavigator(
+    {
+        Cafe: { screen: Cafe }
+    },
+    {
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: 'green'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            }
+        }
+    }
+)
+
+const ContactNavigator = createStackNavigator(
+    {
+        Contact: { screen: Contact }
+    },
+    {
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: 'green'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            }
+        }
+    }
+)
+
 const MainNavigator = createDrawerNavigator(
     {
         Home: { screen: HomeNavigator },
-        Directory: { screen: DirectoryNavigator }
+        Directory: { screen: DirectoryNavigator },
+        Cafe: { screen: CafeNavigator },
+        Contact: { screen: ContactNavigator }
     },
     {
-        drawerBackgroundColor: 'gray'
+        drawerBackgroundColor: 'orange'
     }
 );
 
