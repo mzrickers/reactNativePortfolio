@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-import { Card } from 'react-native-elements';
+import { Text, View, ScrollView, FlatList } from 'react-native';
+import { Card, Icon } from 'react-native-elements';
 import { GAMES } from '../shared/games';
+import { COMMENTS } from '../shared/comments';
 
 
-function RenderGame({game}) {
+
+function RenderGame(props) {
+    const {game} = props;
+
     if (game) {
         return (
             <Card   
@@ -13,10 +17,44 @@ function RenderGame({game}) {
                 <Text style={{margin: 10}}>
                     {game.description}
                 </Text>
+                <Icon
+                    name={props.favorite ? 'heart' : 'heart-o'}
+                    type='font-awesome'
+                    color='#f50'
+                    raised
+                    reverse
+                    onPress={() => props.favorite ?
+                        console.log('Already set as a favorite') : props.fillHeart()}
+                />
             </Card>
         );
     }
     return <View />;
+}
+
+function RenderComments({comments}) {
+
+    const renderCommentItem = ({item}) => {
+        return (
+            <View style={{margin: 10}}>
+                <Text style={{fontSize: 14}}>{item.text}</Text>
+                <Text style={{fontSize: 12}}>{item.rating} Stars</Text>
+                <Text style={{fontSize: 12}}>{`-- ${item.author}, ${item.date}`}</Text>
+            </View>
+        )
+    }
+
+    return (
+        <Card title='Comments'>
+            <FlatList
+                data={comments}
+                renderItem={renderCommentItem}
+                keyExtractor={item => item.id.toString()}
+            />
+
+            
+        </Card>
+    )
 }
 
 
@@ -24,8 +62,14 @@ class GameInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            games: GAMES
+            games: GAMES,
+            comments: COMMENTS,
+            favorite: false
         }
+    }
+
+    markFavorite() {
+        this.setState({favorite: true});
     }
 
     static navigationOptions = {
@@ -35,7 +79,17 @@ class GameInfo extends Component {
     render() {
         const gameId = this.props.navigation.getParam('gameId');
         const game = this.state.games.filter(game => game.id === gameId)[0];
-        return <RenderGame game={game} />;
+        const comments = this.state.comments.filter(comment => comment.gameId === gameId);
+        return (
+            <ScrollView>
+                <RenderGame game={game} 
+                    favorite={this.state.favorite}
+                    fillHeart={() => this.markFavorite()}
+                
+                />
+                <RenderComments comments={comments} />
+            </ScrollView>
+        );
     } 
 }
 
