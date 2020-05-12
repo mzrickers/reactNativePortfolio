@@ -1,0 +1,14 @@
+export const GAMES_LOADING = 'GAMES_LOADING';
+export const ADD_GAMES = 'ADD_GAMES';
+export const GAMES_FAILED = 'GAMES_FAILED';
+
+export const ADD_COMMENTS = 'ADD_COMMENTS';
+export const COMMENTS_FAILED = 'COMMENTS_FAILED';
+
+export const DECORS_LOADING = 'DECORS_LOADING';
+export const ADD_DECORS = 'ADD_DECORS';
+export const DECORS_FAILED = 'DECORS_FAILED';
+
+export const TREATS_LOADING = 'TREATS_LOADING';
+export const ADD_TREATS = 'ADD_TREATS';
+export const TREATS_FAILED = 'TREATS_FAILED';
