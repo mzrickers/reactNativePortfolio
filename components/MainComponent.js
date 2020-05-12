@@ -4,6 +4,7 @@ import Directory from './DirectoryComponent';
 import GameInfo from './GameInfoComponent';
 import Cafe from './CafeComponent';
 import Contact from './ContactComponent';
+import Reservation from './ReservationComponent';
 import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, DrawerItems } from 'react-navigation';
 import { Icon } from 'react-native-elements';
@@ -45,7 +46,7 @@ const DirectoryNavigator = createStackNavigator(
             }
         }
     }
-)
+);
 
 const HomeNavigator = createStackNavigator(
     {
@@ -68,7 +69,7 @@ const HomeNavigator = createStackNavigator(
             />
         })
     }
-)
+);
 
 const CafeNavigator = createStackNavigator(
     {
@@ -91,7 +92,7 @@ const CafeNavigator = createStackNavigator(
             />
         })
     }
-)
+);
 
 const ContactNavigator = createStackNavigator(
     {
@@ -114,7 +115,30 @@ const ContactNavigator = createStackNavigator(
             />
         })
     }
-)
+);
+
+const ReservationNavigator = createStackNavigator(
+    {
+        Reservation: { screen: Reservation }
+    },
+    {
+        navigationOptions: ({navigation}) => ({
+            headerStyle: {
+                backgroundColor: 'green'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            },
+            headerLeft: <Icon
+                name='calendar'
+                type='font-awesome'
+                iconStyle={styles.stackIcon}
+                onPress={() => navigation.toggleDrawer()}
+            />
+        })
+    }
+);
 
 const CustomDrawerContentComponent = props => (
     <ScrollView>
@@ -155,6 +179,20 @@ const MainNavigator = createDrawerNavigator(
                 drawerIcon: ({tintColor}) => (
                     <Icon
                         name='list'
+                        type='font-awesome'
+                        size={24}
+                        color={tintColor}
+                    />
+                )
+            }
+        },
+        Reservation: { 
+            screen: ReservationNavigator, 
+            navigationOptions: {
+                drawerLabel: 'Reserve Table',
+                drawerIcon: ({tintColor}) => (
+                    <Icon
+                        name='calendar'
                         type='font-awesome'
                         size={24}
                         color={tintColor}
