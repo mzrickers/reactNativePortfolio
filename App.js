@@ -5,6 +5,9 @@ import { ConfigureStore } from './redux/configureStore';
 
 const store = ConfigureStore();
 
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings(['Warning: ...']) console.disableYellowBox = true;
+
 export default function App() {
   return (
     <Provider store={store}>
