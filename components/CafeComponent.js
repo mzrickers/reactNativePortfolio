@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Text, FlatList } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
-import { TREATS } from '../shared/treats';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
 
- function Mission() {
+const mapStateToProps = state => {
+    return {
+        treats: state.treats
+    };
+};
+
+function Mission() {
     return(
-        <Card title="Our Mission">
+        <Card title="Treat Yourself!">
             <Text>
                 We have a wide assortment array of treats and Board Games.  
                 Fun for the whole family or just a group of friends.
@@ -14,15 +21,8 @@ import { TREATS } from '../shared/treats';
     )
 }
 
-class Cafe extends Component 
-{
-    constructor(props) 
-    {
-        super(props);
-        this.state = {
-            treats: TREATS
-        }
-    }
+class Cafe extends Component {
+   
 
     static navigationOptions = {
         title: 'Cafe'
@@ -38,7 +38,7 @@ class Cafe extends Component
                 <ListItem
                     title={item.name}
                     subtitle={item.description}
-                    leftAvatar={{ source: require('./images/coffee.jpg')}}   
+                    leftAvatar={{ source: {uri: baseUrl + item.image}}}   
                 />
             )
         }
@@ -48,7 +48,7 @@ class Cafe extends Component
                 <Mission />
                 <Card title="Cafe Treats">
                     <FlatList
-                        data={this.state.treats}
+                        data={this.props.treats.treats}
                         renderItem={renderTreat}
                         keyExtractor={item => item.id.toString()}
                     />
@@ -58,4 +58,4 @@ class Cafe extends Component
     }
 }
 
-export default Cafe;
+export default connect(mapStateToProps)(Cafe);

@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { Card } from 'react-native-elements';
-import { GAMES } from '../shared/games';
-import { DECORS } from '../shared/decors';
-import { COMMENTS } from '../shared/comments';
-import { TREATS } from '../shared/treats';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+
+const mapStateToProps = state => {
+    return {
+        games: state.games,
+        decors: state.decors,
+        treats: state.treats
+    };
+};
 
 
 function RenderItem({item}) {
@@ -12,7 +18,7 @@ function RenderItem({item}) {
         return(
             <Card
                 featuredTitle={item.name}
-                image={require('./images/cafe.jpeg')}    >
+                image={{uri: baseUrl + item.image}}>
                 <Text
                     style={{margin: 10}}>
                     {item.description}
@@ -25,16 +31,6 @@ function RenderItem({item}) {
 
 class Home extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            games: GAMES,
-            decors: DECORS,
-            comments: COMMENTS,
-            treats: TREATS
-        }
-    }
-
     static navigationOptions = {
         title: 'Home'
     }
@@ -43,14 +39,14 @@ class Home extends Component {
         return(
             <ScrollView>
                 <RenderItem 
-                    item={this.state.games.filter(game => game.featured)[0]} />
+                    item={this.props.games.games.filter(game => game.featured)[0]} />
                 <RenderItem
-                    item={this.state.treats.filter(treat => treat.featured)[0]} />
+                    item={this.props.treats.treats.filter(treat => treat.featured)[0]} />
                 <RenderItem
-                    item={this.state.decors.filter(decor => decor.featured)[0]} />
+                    item={this.props.decors.decors.filter(decor => decor.featured)[0]} />
             </ScrollView>
         )
     }
 }
 
-export default Home;
+export default connect(mapStateToProps)(Home);

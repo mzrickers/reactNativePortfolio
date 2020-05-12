@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
-import { ListItem } from 'react-native-elements';
-import { GAMES } from '../shared/games';
+import { Tile } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
 
-
+const mapStateToProps = state => {
+    return {
+        games: state.games
+    };
+};
 
 
 class Directory extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            games: GAMES
-        }
-    }
-
+  
     static navigationOptions = {
         title: 'Directory'
     };
@@ -22,18 +21,19 @@ class Directory extends Component {
         const { navigate } = this.props.navigation;
         const renderDirectoryItem = ({item}) => {
             return(
-                <ListItem
+                <Tile
                     title={item.name}
-                    subtitle={item.description}
+                    caption={item.description}
+                    featured
                     onPress={() => navigate('GameInfo', { gameId: item.id })}
-                    leftAvatar={{ source: require('./images/cafe.jpeg')}}
+                    imageSrc={{uri: baseUrl + item.image}}
                 />
             )
         }
 
         return(
             <FlatList
-                data={this.state.games}
+                data={this.props.games.games}
                 renderItem={renderDirectoryItem}
                 keyExtractor={item => item.id.toString()}
             />
@@ -41,4 +41,4 @@ class Directory extends Component {
     }
 }
 
-export default Directory;
+export default connect(mapStateToProps)(Directory);

@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, FlatList } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
-import { GAMES } from '../shared/games';
-import { COMMENTS } from '../shared/comments';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
 
-
+const mapStateToProps = state => {
+    return {
+        games: state.games,
+        comments: state.comments
+    };
+};
 
 function RenderGame(props) {
     const {game} = props;
@@ -13,7 +18,7 @@ function RenderGame(props) {
         return (
             <Card   
                 featuredTitle={game.name}
-                image={require('./images/cafe.jpeg')}>
+                image={{uri: baseUrl + game.image}}>
                 <Text style={{margin: 10}}>
                     {game.description}
                 </Text>
@@ -62,8 +67,6 @@ class GameInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            games: GAMES,
-            comments: COMMENTS,
             favorite: false
         }
     }
@@ -78,8 +81,8 @@ class GameInfo extends Component {
 
     render() {
         const gameId = this.props.navigation.getParam('gameId');
-        const game = this.state.games.filter(game => game.id === gameId)[0];
-        const comments = this.state.comments.filter(comment => comment.gameId === gameId);
+        const game = this.props.games.games.filter(game => game.id === gameId)[0];
+        const comments = this.props.comments.comments.filter(comment => comment.gameId === gameId);
         return (
             <ScrollView>
                 <RenderGame game={game} 
@@ -95,4 +98,4 @@ class GameInfo extends Component {
 
 
 
-export default GameInfo;
+export default connect(mapStateToProps)(GameInfo);
