@@ -24,7 +24,7 @@ function RenderGame(props) {
                     raised
                     reverse
                     onPress={() => props.favorite ?
-                        console.log('Already set as a favorite') : props.fillHeart()}
+                        console.log('Already set as a favorite') : props.markFavorite()}
                 />
             </Card>
         );
@@ -84,7 +84,7 @@ class GameInfo extends Component {
             <ScrollView>
                 <RenderGame game={game} 
                     favorite={this.state.favorite}
-                    fillHeart={() => this.markFavorite()}
+                    markFavorite={() => this.markFavorite()}
                 
                 />
                 <RenderComments comments={comments} />
