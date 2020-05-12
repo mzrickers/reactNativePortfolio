@@ -5,6 +5,7 @@ import { games } from './games';
 import { comments } from './comments';
 import { decors } from './decors';
 import { treats } from './treats';
+import { favorites } from './favorites';
 
 export const ConfigureStore = () => {
     const store = createStore(
@@ -12,7 +13,8 @@ export const ConfigureStore = () => {
             games,
             comments,
             treats,
-            decors
+            decors,
+            favorites
         }),
         applyMiddleware(thunk, logger)
     );

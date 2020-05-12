@@ -12,3 +12,5 @@ export const DECORS_FAILED = 'DECORS_FAILED';
 export const TREATS_LOADING = 'TREATS_LOADING';
 export const ADD_TREATS = 'ADD_TREATS';
 export const TREATS_FAILED = 'TREATS_FAILED';
+
+export const ADD_FAVORITE = 'ADD_FAVORITE';

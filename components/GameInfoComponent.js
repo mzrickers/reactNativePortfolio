@@ -3,12 +3,18 @@ import { Text, View, ScrollView, FlatList } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
+import { postFavorite } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
         games: state.games,
-        comments: state.comments
+        comments: state.comments,
+        favorites: state.favorites
     };
+};
+
+const mapDispatchToProps = {
+    postFavorite: gameId => (postFavorite(gameId))
 };
 
 function RenderGame(props) {
@@ -64,15 +70,9 @@ function RenderComments({comments}) {
 
 
 class GameInfo extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            favorite: false
-        }
-    }
 
-    markFavorite() {
-        this.setState({favorite: true});
+    markFavorite(gameId) {
+        this.props.postFavorite(gameId);
     }
 
     static navigationOptions = {
@@ -86,9 +86,8 @@ class GameInfo extends Component {
         return (
             <ScrollView>
                 <RenderGame game={game} 
-                    favorite={this.state.favorite}
-                    markFavorite={() => this.markFavorite()}
-                
+                    favorite={this.props.favorites.includes(gameId)}
+                    markFavorite={() => this.markFavorite(gameId)}            
                 />
                 <RenderComments comments={comments} />
             </ScrollView>
@@ -98,4 +97,4 @@ class GameInfo extends Component {
 
 
 
-export default connect(mapStateToProps)(GameInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(GameInfo);

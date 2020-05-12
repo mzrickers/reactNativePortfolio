@@ -146,3 +146,16 @@ export const addTreats = treats => ({
     type: ActionTypes.ADD_TREATS,
     payload: treats
 });
+
+//Favorites-------------------------------------
+
+export const postFavorite = gameId => dispatch => {
+    setTimeout(() => {
+        dispatch(addFavorite(gameId));
+    }, 2000);
+}
+
+export const addFavorite = gameId => ({
+    type: ActionTypes.ADD_FAVORITE,
+    payload: gameId
+});
