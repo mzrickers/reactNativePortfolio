@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, FlatList, Modal, Button, StyleSheet } from 'react-native';
-import { Card, Icon } from 'react-native-elements';
+import { Card, Icon, Rating, Input } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { postFavorite } from '../redux/ActionCreators';
+import { postComment } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
@@ -14,7 +15,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-    postFavorite: gameId => (postFavorite(gameId))
+    postFavorite: gameId => (postFavorite(gameId)),
+    postComment: (gameId, rating, author, text) => (postComment(gameId, rating, author, text))
 };
 
 function RenderGame(props) {
@@ -60,7 +62,12 @@ function RenderComments({comments}) {
         return (
             <View style={{margin: 10}}>
                 <Text style={{fontSize: 14}}>{item.text}</Text>
-                <Text style={{fontSize: 12}}>{item.rating} Stars</Text>
+                <Rating
+                    startingValue={item.rating}
+                    imageSize={10}
+                    style={{alignItems: 'flex-start', paddingVertical: '5%'}}
+                    readonly
+                />
                 <Text style={{fontSize: 12}}>{`-- ${item.author}, ${item.date}`}</Text>
             </View>
         )
@@ -72,9 +79,7 @@ function RenderComments({comments}) {
                 data={comments}
                 renderItem={renderCommentItem}
                 keyExtractor={item => item.id.toString()}
-            />
-
-            
+            />     
         </Card>
     )
 }
@@ -86,12 +91,29 @@ class GameInfo extends Component {
         super(props);
 
         this.state = {
-            showModal: false
+            showModal: false,
+            rating: 5,
+            author: '',
+            text: ''
         }
     }
 
     toggleModal() {
         this.setState({showModal: !this.state.showModal})
+    }
+
+    handleComment(gameId) {
+        this.props.postComment(gameId, this.state.rating, this.state.author, this.state.text);
+        this.toggleModal();
+    }
+
+    resetForm() {
+        this.setState({
+            showModal: false,
+            rating: 5,
+            author: '',
+            text: ''
+        });
     }
 
     markFavorite(gameId) {
@@ -115,16 +137,48 @@ class GameInfo extends Component {
                 />
                 <RenderComments comments={comments} />
                 <Modal
-                    animationType={'slide'}
+                    animationType='slide'
                     transparent={false}
                     visible={this.state.showModal}
                     onRequestClose={() => this.toggleModal()}>
                     <View style={styles.modal}>
+                        <Rating
+                            showRating
+                            startingValue={this.state.rating}
+                            imageSize={40}
+                            onFinishRating={(rating) => this.setState({rating: rating})}
+                            style={{paddingVertical: 10}}
+                        />
+                        <Input
+                            value={this.state.author}
+                            placeholder='Author'
+                            leftIcon={{ type: 'font-awesome', name: 'user-o'}}
+                            leftIconContainerStyle={{paddingRight: 10}}
+                            onChangeText={value => this.setState({author: value})}
+                        />
+                        <Input
+                            value={this.state.text}
+                            placeholder='Comment'
+                            leftIcon={{ type: 'font-awesome', name: 'comment-o'}}
+                            leftIconContainerStyle={{paddingRight: 10}}
+                            onChangeText={value => this.setState({text: value})}
+                        />
+                        <View>
+                            <Button
+                                title='Submit'
+                                color='green'
+                                onPress={() => {
+                                    this.handleComment(gameId);
+                                    this.resetForm();
+                                }}                    
+
+                            />
+                        </View>
                         <View style={{margin: 10}}>
                             <Button
                                 onPress={() => {
                                     this.toggleModal();
-                                    // this.resetForm();
+                                    this.resetForm();
                                 }}
                                 color='#808080'
                                 title='Cancel'

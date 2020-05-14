@@ -33,6 +33,21 @@ export const addComments = (comments) => ({
     payload: comments
 });
 
+export const postComment = (gameId, rating, author, text) => dispatch => {
+    const newComment = {gameId, rating, author, text, date: new Date().toISOString()};
+
+    setTimeout(() => {
+        dispatch(addComment(newComment))
+    }, 1000)
+}
+
+
+export const addComment = (comment) => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: comment
+})
+
+//Games---------------------------------------
 export const fetchGames = () => dispatch => {
 
     dispatch(gamesLoading());

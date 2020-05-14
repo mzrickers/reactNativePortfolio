@@ -3,6 +3,7 @@ export const ADD_GAMES = 'ADD_GAMES';
 export const GAMES_FAILED = 'GAMES_FAILED';
 
 export const ADD_COMMENTS = 'ADD_COMMENTS';
+export const ADD_COMMENT = 'ADD_COMMENT';
 export const COMMENTS_FAILED = 'COMMENTS_FAILED';
 
 export const DECORS_LOADING = 'DECORS_LOADING';
