@@ -15,3 +15,4 @@ export const ADD_TREATS = 'ADD_TREATS';
 export const TREATS_FAILED = 'TREATS_FAILED';
 
 export const ADD_FAVORITE = 'ADD_FAVORITE';
+export const DELETE_FAVORITE = 'DELETE_FAVORITE';

@@ -174,3 +174,8 @@ export const addFavorite = gameId => ({
     type: ActionTypes.ADD_FAVORITE,
     payload: gameId
 });
+
+export const deleteFavorite = gameId => ({
+    type: ActionTypes.DELETE_FAVORITE,
+    payload: gameId
+});
