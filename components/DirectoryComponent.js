@@ -26,7 +26,9 @@ class Directory extends Component {
                 <Animatable.View animation='fadeInRightBig' duration={2000}>
                     <Tile
                         title={item.name}
+                        titleStyle={{backgroundColor: 'rgba(0, 0, 0, 0.5)', width: '100%', position: 'absolute', bottom: 40}}
                         caption={item.description}
+                        captionStyle={{backgroundColor: 'rgba(0, 0, 0, 0.5)', width: '100%', position: 'absolute', bottom: 0}}
                         featured
                         onPress={() => navigate('GameInfo', { gameId: item.id })}
                         imageSrc={{uri: baseUrl + item.image}}
