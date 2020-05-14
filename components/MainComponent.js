@@ -41,7 +41,7 @@ const DirectoryNavigator = createStackNavigator(
         initialRouteName: 'Directory',
         navigationOptions: {
             headerStyle: {
-                backgroundColor: 'green'
+                backgroundColor: '#92CD28'
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
@@ -58,7 +58,7 @@ const HomeNavigator = createStackNavigator(
     {
         navigationOptions: ({navigation}) => ({
             headerStyle: {
-                backgroundColor: 'green'
+                backgroundColor: '#92CD28'
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
@@ -81,7 +81,7 @@ const CafeNavigator = createStackNavigator(
     {
         navigationOptions: ({navigation}) => ({
             headerStyle: {
-                backgroundColor: 'green'
+                backgroundColor: '#92CD28'
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
@@ -104,7 +104,7 @@ const ContactNavigator = createStackNavigator(
     {
         navigationOptions: ({navigation}) => ({
             headerStyle: {
-                backgroundColor: 'green'
+                backgroundColor: '#92CD28'
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
@@ -127,7 +127,7 @@ const ReservationNavigator = createStackNavigator(
     {
         navigationOptions: ({navigation}) => ({
             headerStyle: {
-                backgroundColor: 'green'
+                backgroundColor: '#92CD28'
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
@@ -150,7 +150,7 @@ const FavoritesNavigator = createStackNavigator(
     {
         navigationOptions: ({navigation}) => ({
             headerStyle: {
-                backgroundColor: 'green'
+                backgroundColor: '#92CD28'
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
@@ -173,7 +173,7 @@ const LoginNavigator = createStackNavigator(
     {
         navigationOptions: ({navigation}) => ({
             headerStyle: {
-                backgroundColor: 'green'
+                backgroundColor: '#92CD28'
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
@@ -375,7 +375,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     drawerHeader: {
-        backgroundColor: 'green',
+        backgroundColor: '#92CD28',
         height: 140,
         alignItems: 'center',
         justifyContent: 'center',

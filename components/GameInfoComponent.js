@@ -101,7 +101,7 @@ function RenderGame(props) {
                             style={styles.cardItem}
                             name='pencil'
                             type='font-awesome'
-                            color='green'
+                            color='#92CD28'
                             raised
                             reverse
                             onPress={() => props.onShowModal()}
@@ -109,7 +109,7 @@ function RenderGame(props) {
                           <Icon
                             name={'share'}
                             type='font-awesome'
-                            color='green'
+                            color='#92CD28'
                             style={styles.cardItem}
                             raised
                             reverse
@@ -235,7 +235,7 @@ class GameInfo extends Component {
                         <View>
                             <Button
                                 title='Submit'
-                                color='green'
+                                color='#92CD28'
                                 onPress={() => {
                                     this.handleComment(gameId);
                                     this.resetForm();

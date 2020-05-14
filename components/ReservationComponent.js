@@ -106,7 +106,7 @@ class Reservation extends Component {
                     <Switch
                         style={styles.formItem}
                         value={this.state.ownGame}
-                        trackColor={{true: 'green', false: null}}
+                        trackColor={{true: '#92CD28', false: null}}
                         onValueChange={value => this.setState({ownGame: value})}>
                     </Switch>
                 </View>
@@ -139,7 +139,7 @@ class Reservation extends Component {
                     <Button
                         onPress={() => this.handleReservation()}
                         title='Search'
-                        color='green'
+                        color='#92CD28'
                         accessibilityLabel='Tap me to search for available game tables to reserve'
                     />
                 </View>
@@ -158,7 +158,7 @@ class Reservation extends Component {
                                 this.toggleModal();
                                 this.resetForm();
                             }}
-                            color='green'
+                            color='#92CD28'
                             title='Close'
                         />
                     </View>
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     modalTitle: {
         fontSize: 24,
         fontWeight: 'bold',
-        backgroundColor: 'green',
+        backgroundColor: '#92CD28',
         textAlign: 'center',
         color: '#fff',
         marginBottom: 20

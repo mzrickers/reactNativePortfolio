@@ -92,7 +92,7 @@ class LoginTab extends Component {
                                 iconStyle={{marginRight: 10}}
                             />
                         }
-                        buttonStyle={{backgroundColor: 'green'}}
+                        buttonStyle={{backgroundColor: '#92CD28'}}
                     />
                 </View>
                 <View style={styles.formButton}>
@@ -245,7 +245,7 @@ class RegisterTab extends Component {
                                     iconStyle={{marginRight: 10}}
                                 />
                             }
-                            buttonStyle={{backgroundColor: 'green'}}
+                            buttonStyle={{backgroundColor: '#92CD28'}}
                         />
                     </View>
                 </View>
@@ -261,7 +261,7 @@ const Login = createBottomTabNavigator(
     },
     {
         tabBarOptions: {
-            activeBackgroundColor: 'green',
+            activeBackgroundColor: '#92CD28',
             inactiveBackgroundColor: '#CEC8FF',
             activeTintColor: '#fff',
             inactiveTintColor: '#808080',
