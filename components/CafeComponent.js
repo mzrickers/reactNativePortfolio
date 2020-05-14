@@ -41,7 +41,7 @@ class Cafe extends Component {
                 //     leftAvatar={{ source: {uri: baseUrl + item.image}}}   
                 // />
                 <Tile
-                    title={item.name}
+                    title={item.name + " --------- " + item.price}
                     titleStyle={{fontSize: 40, fontWeight: 'bold'}}
                     caption={item.description}
                     imageSrc={{uri: baseUrl + item.image}}
