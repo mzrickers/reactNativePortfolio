@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button, Modal } from 'react-native';
+import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button, Modal, Alert } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import * as Animatable from 'react-native-animatable';
 
@@ -20,21 +20,37 @@ class Reservation extends Component {
         title: 'Reserve Game Table'
     }
 
-    toggleModal() {
-        this.setState({showModal: !this.state.showModal});
-    }
+    // toggleModal() {
+    //     this.setState({showModal: !this.state.showModal});
+    // }
 
     handleReservation() {
-        console.log(JSON.stringify(this.state));
-        this.toggleModal();
+        // console.log(JSON.stringify(this.state));
+        // this.toggleModal();
+        Alert.alert(
+            'Begin Search?',
+            'Number of Gamers: ' + this.state.gamers + '\n\nHike-In? ' + this.state.ownGame + '\n\nDate: ' + this.state.date,
+            [
+                {
+                    text: 'Cancel',
+                    style: 'cancel',
+                    onPress: () => this.resetForm()
+                },
+                {
+                    text: 'OK',
+                    onPress: () => this.resetForm()
+                }
+            ],
+            { cancelable: false }
+        );
     }
 
     resetForm() {
         this.setState({
             gamers: 1,
             ownGame: false,
-            date: '',
-            showModal: false
+            date: ''
+            //showModal: false
         });
     }
 
@@ -100,7 +116,7 @@ class Reservation extends Component {
                         accessibilityLabel='Tap me to search for available game tables to reserve'
                     />
                 </View>
-                <Modal
+                {/* <Modal
                     animationType={'slide'}
                     transparent={false}
                     visible={this.state.showModal}
@@ -119,7 +135,7 @@ class Reservation extends Component {
                             title='Close'
                         />
                     </View>
-                </Modal>
+                </Modal> */}
             </Animatable.View>
         );
     }
